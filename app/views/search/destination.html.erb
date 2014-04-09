@@ -1,0 +1,30 @@
+
+<% content_for :title do %>Where do you want to go?<% end %>
+
+<h1>Where do you want to go?</h1>
+
+<div class="wrapper">
+
+<!-- Tag para iniciar um form -->
+<%= form_tag({controller: "search", action: :search_response}, method: "get", class: "search_fields") do %>
+
+<!-- Form contents goes here --><br/>
+
+<!-- Start Field -->
+  <%= label_tag(:origem, "Origem:") %>
+  <%= text_field_tag(:origem) %>
+  
+<!-- Destiny Field -->
+  <%= label_tag(:destino, "Destino:") %>
+  <%= text_field_tag(:destino) %> 
+  
+  
+<!-- Botão Enviar -->
+  <%= submit_tag("Show me!") %>
+<% end %>
+
+
+
+
+</div>
+</div>

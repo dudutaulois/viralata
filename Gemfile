@@ -17,6 +17,9 @@ gem 'high_voltage'
 gem 'gmaps4rails'
 gem 'geocoder'
 
+#inserindo gem para mapas
+gem 'geokit-rails'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
