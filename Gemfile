@@ -23,3 +23,6 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_layout'
 end
+
+gem 'execjs'
+gem 'tzinfo-data', platforms: [:mingw, :mswin]
