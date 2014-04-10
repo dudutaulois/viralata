@@ -5,3 +5,44 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+files = Dir[Rails.root.join('db', 'routes').to_s + "/*.csv"]
+
+files.each do |file_name|
+	/\/([^\/]+)\.csv$/ =~ file_name
+	route_name = $1
+
+	# Database transaction must do everything or rollback everything
+	Point.transaction do
+		route = Route.create(:name => route_name)
+		
+		first_path = nil
+		last_path = nil
+		
+		CSV.foreach(file_name, headers:true) do |row|
+			lat = Float(row['Latitude'])
+			lng = Float(row['Longitude'])
+			
+			point = Point.where(:lat => lat, :lng => lng).first
+			point = Point.create(:lat => lat, :lng => lng) unless point
+	
+			path = Path.create(:route => route,
+						  	   :point => point,
+						  	   :street => row['Street'],
+						  	   :city => row['City'])
+			if last_path
+				last_path.nxt = path
+				last_path.save!
+			end
+	
+			last_path = path						   
+			first_path = path unless first_path
+		end
+	
+		# Complete path loop
+		last_path.nxt = first_path
+		last_path.save!		
+	end
+end

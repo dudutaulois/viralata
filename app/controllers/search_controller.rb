@@ -2,27 +2,33 @@ class SearchController < ApplicationController
 
   def index
   
-  require 'csv'
   
   end
   
   def testcsv
-    
+  
+  require 'csv'  
  	 	
  	@destino = Array.new
- 	CSV.foreach('app/assets/Routes-Test.csv', headers:true, :quote_char => "\'") do |row|
- 	@destino << row[2]	
-	
-	
-  end 
-  
+ 		CSV.foreach('app/assets/Routes-Test.csv', headers:true) do |row|
+ 		@destino << row[2]	
+  	end
+  	
+  	   CSV.foreach('dsfsdf', headers:true) do |row|
+  	     Point.insert(latitude: row['Lat'], longitude: row['Lon'])
+  	   end
   
   end
+
   
-  #   	@users = User.all
-#   	@hash = Gmaps4rails.build_markers(@users) do |user, marker|
-#  	 marker.lat user.latitude
+
+  
+#    	@users = User.all
+#    	@hash = Gmaps4rails.build_markers(@users) do |user, marker|
+#   	 marker.lat user.latitude
 #  	 marker.lng user.longitude
+
+
 
 
   def destination
