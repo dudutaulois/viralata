@@ -18,6 +18,7 @@
 #wrapper {
     top: 250px;
     margin: 0 auto;
+    
 }
 
 #middle {
@@ -33,4 +34,14 @@
     background-color: #000000;
     border: 1px white solid;
 
+}
+
+/*Where do you want to go? on first page*/
+#bigred {
+  font-size: xx-large;
+  text-transform: uppercase; 
+  color: #CC0000;
+  background-color: #B2B26B;
+  text-align: center;
+  margin-left: 25%;
 }
