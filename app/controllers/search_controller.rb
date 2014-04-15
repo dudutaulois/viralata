@@ -1,8 +1,7 @@
 class SearchController < ApplicationController
 
   def index
-  
-  
+    @no_header = true
   end
   
   def busroutes
