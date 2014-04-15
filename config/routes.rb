@@ -5,5 +5,7 @@ Viralata::Application.routes.draw do
   get 'search/search_response', to: 'search#search_response'
   get 'CSV', to: 'search#testcsv'
   get 'busroutes', to: 'search#busroutes'
-  
+
+  resources :companies
+  resources :routes
 end
