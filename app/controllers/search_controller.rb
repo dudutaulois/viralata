@@ -5,9 +5,13 @@ class SearchController < ApplicationController
   
   end
   
+  def busroutes
+  end
+  
   def testcsv
   
   require 'csv'  
+  
  	 	
  	@destino = Array.new
  		CSV.foreach('app/assets/Routes-Test.csv', headers:true) do |row|
@@ -37,6 +41,8 @@ class SearchController < ApplicationController
 # 	session[:origin] = origin
   end
   
+  
+ 
   def get_to_bus
 #     dest_name = param[:destino]
 #     destination = call_to_google_api_for_gps(dest_name)
@@ -93,5 +99,9 @@ class SearchController < ApplicationController
 #   	
 #   	end
   
- 
+
+
 end
+
+
+ 

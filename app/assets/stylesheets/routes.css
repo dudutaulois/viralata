@@ -1,0 +1,143 @@
+body
+{
+	background-color: #e4dfe3;
+	font-family: Helvetica, Verdana, sans-serif;
+	position: relative;
+	
+}
+
+/*boxes for the menu. */
+
+.optionbox {
+	border: outset;
+	border-color: #ffffff;
+	margin-left: 400px; 
+	margin-right: 400px;
+	text-align: center;
+	padding-left:20px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	clear-none;
+	
+}
+
+/*green button on Options page */
+
+#sidebutton {
+	margin-left: 400px;
+	margin-top:200px;
+	float:left;
+}
+
+a.trigger {
+	postition: absolute;
+	display:block;
+	float:left;
+}
+
+/*green sliding panel. */
+.panel {
+position: absolute;
+margin-left: 450px;
+	margin-top:10px;
+	float:right;
+	display:none;
+	z-index:11;
+	filter: alpha(opacity=85);
+137
+opacity: .85;
+
+}
+
+h3 {
+	text-align: center;
+}
+
+/* boxes for the bus schedules. */
+
+.busoptionbox {
+	border: outset;
+	border-color: #ffffff;
+	margin-left: 400px; 
+	margin-right: 400px;
+	text-align: center;
+	padding-left:5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-weight: lighter;
+	clear:none;
+}
+
+/*green panel that's visible */
+.visiblepanel {
+position: fixed;
+margin-left: 300px;
+	margin-top:0;
+	
+	z-index:11;
+	
+
+}
+
+
+
+/*numbered boxes on the schedules*/
+.orange-numbered-box {
+	background-color: #ff7200; /*orange*/
+	border:2px dotted;
+	font-weight: bold;
+}
+
+.green-numbered-box {
+	background-color: #0ca21a; 
+	border:2px dotted;
+	font-weight: bold;
+}
+
+.blue-numbered-box {
+	background-color: #1901ff; 
+	border:2px dotted;
+	font-weight: bold;
+}
+
+.red-numbered-box {
+background-color: #ff0000; 
+	border:2px dotted;
+	font-weight: bold;
+}
+
+.light-blue-numbered-box{
+background-color: #68b7dc; 
+	border:2px dotted;
+	font-weight: bold;
+}
+
+/*Fenur SA Page*/
+.yellowbox {
+	background-color: #ffff00;
+	border: outset;
+	border-color: #ffffff;
+	margin-left: 400px; 
+	margin-right: 400px;
+	text-align: center;
+	padding-left:5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-weight: lighter;
+	clear:none;
+}
+
+.boldbusnumber {
+	font-weight:bold;
+
+}
+
+.yellowboxlist {
+	list-style-type: none;
+}
+
+/*606 bus sample page*/
+
+.class {
+	font-size: 150%;
+}
