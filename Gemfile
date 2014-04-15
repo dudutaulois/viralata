@@ -20,6 +20,10 @@ gem 'geocoder'
 #inserindo gem para mapas
 gem 'geokit-rails'
 
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'gmaps-autocomplete-rails'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

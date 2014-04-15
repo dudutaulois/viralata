@@ -1,5 +1,5 @@
-
 <% content_for :title do %>Where do you want to go?<% end %>
+
 
 <h1>Where do you want to go?</h1>
 
@@ -10,13 +10,10 @@
 
 <!-- Form contents goes here --><br/>
 
-<!-- Start Field -->
-  <%= label_tag(:origen, "Origen:") %>
-  <%= text_field_tag(:origen) %>
   
 <!-- Destiny Field -->
-  <%= label_tag(:destino, "Destino:") %>
-  <%= text_field_tag(:destino) %> 
+  <%= label_tag(:destination, "Destination:") %>
+  <%= text_field_tag(:destination) %> 
   
   
 <!-- Botão Enviar -->
@@ -24,6 +21,35 @@
 <% end %>
 
 
+<!-- Getting Information of the current position -->
+
+<script type="text/javascript">
+function showLocation(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  alert("Latitude : " + latitude + " Longitude: " + longitude);
+  }
+
+function errorHandler(err) {
+  if(err.code == 1) {
+    alert("Error: Access is denied!");
+  }else if( err.code == 2) {
+    alert("Error: Position is unavailable!");
+  }
+}
+function getLocation(){
+
+   if(navigator.geolocation){
+      // timeout at 60000 milliseconds (60 seconds)
+      var options = {timeout:60000};
+      navigator.geolocation.getCurrentPosition(showLocation, 
+                                               errorHandler,
+                                               options);
+   }else{
+      alert("Sorry, browser does not support geolocation!");
+   }
+}
+</script>
 
 
 </div>
