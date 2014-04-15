@@ -16,10 +16,19 @@
   <%= text_field_tag(:destination, 'Type here the destination adress', id: 'destination_field') %> 
   
   
+  <%= text_field_tag(:error, nil, id: 'gmaps-error') %> 
+
 <!-- Botão Enviar -->
   <%= submit_tag("Show me!") %>
 <% end %>
 
+<br/>
+
+<!-- Teste -->
+
+<%= text_field_tag(@post) do |f| %>
+<%= f.input :address, :input_html =>{:id => 'gmaps-input-address'}, :placeholder => 'Start typing a place...' %>
+<% end %>
 
 <!-- Getting auto complete from Google -->
 
@@ -28,12 +37,12 @@ jQuery(function() {
   var completer;
 
   completer = new GmapsCompleter({
-    inputField: '#destination_field',
+    inputField: '#gmaps-input-address',
     errorField: '#gmaps-error'
   });
 
   completer.autoCompleteInit({
-    country: "ch"
+    country: "us"
   });
 });
 </script>
