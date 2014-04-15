@@ -13,7 +13,7 @@
   
 <!-- Destiny Field -->
   <%= label_tag(:destination, "Destination:") %>
-  <%= text_field_tag(:destination) %> 
+  <%= text_field_tag(:destination, 'Type here the destination adress', id: 'destination_field') %> 
   
   
 <!-- Botão Enviar -->
@@ -21,34 +21,21 @@
 <% end %>
 
 
-<!-- Getting Information of the current position -->
+<!-- Getting auto complete from Google -->
 
 <script type="text/javascript">
-function showLocation(position) {
-  var latitude = position.coords.latitude;
-  var longitude = position.coords.longitude;
-  alert("Latitude : " + latitude + " Longitude: " + longitude);
-  }
+jQuery(function() {
+  var completer;
 
-function errorHandler(err) {
-  if(err.code == 1) {
-    alert("Error: Access is denied!");
-  }else if( err.code == 2) {
-    alert("Error: Position is unavailable!");
-  }
-}
-function getLocation(){
+  completer = new GmapsCompleter({
+    inputField: '#destination_field',
+    errorField: '#gmaps-error'
+  });
 
-   if(navigator.geolocation){
-      // timeout at 60000 milliseconds (60 seconds)
-      var options = {timeout:60000};
-      navigator.geolocation.getCurrentPosition(showLocation, 
-                                               errorHandler,
-                                               options);
-   }else{
-      alert("Sorry, browser does not support geolocation!");
-   }
-}
+  completer.autoCompleteInit({
+    country: "ch"
+  });
+});
 </script>
 
 
