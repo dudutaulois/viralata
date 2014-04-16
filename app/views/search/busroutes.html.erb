@@ -13,7 +13,7 @@
 'Viña Bus S.A',
 'Buses del Gran Valparaiso S.A'
 ] %>
-
+<!--
 <% @companies.each_with_index do |company, index| %>
 
   <%= link_to buscompany_path, class: "bus-button" do %>
@@ -23,8 +23,9 @@
 <% end %>
 
 <hr/>
-
-<table class = "bus-button">
+-->
+<div id="wrapper">
+<table  class = "bus-table">
 <% @companies.each_with_index do |company, index| %>
 
     <tr>
@@ -35,7 +36,7 @@
 
 <% end %>
 </table>
-
+</div>
 
 
 

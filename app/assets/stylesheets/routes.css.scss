@@ -52,51 +52,43 @@ h3 {
 
 /* buttons of the companies */	
 	
-.bus-button {
+.bus-table {
 	border: outset;
 	border-color: black;
 	margin-left: auto; 
 	margin-right: auto;
-	text-align: center;
-	padding-left:5px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	text-align: center;	
 	font-weight: lighter;
-	width : 200px; 
+	
 	clear:none;
-	display:block;
+	width: 100%;
+	max-width:800px;
+	
+	
+	
 }
 
-.bus-button a {
-   display: block;
-}
-
-.bus-button tr:hover {
-  background-color: yellow;
-}
-
-.bus-button tr:hover td:first-child {
-  background-color: red;
-}
-
-.NumberCompany {
-width:50px;
-background-color: yellow;
-
-}
-
-.NameCompany{
-float: right;
-position: relative;
-top: 0;
-width:150px;
-background-color: blue;
-
+.bus-table tr td {
+		border: thin solid yellow;
+	
 }
 
 
+.bus-table a {
+ color:black;
+}
 
+.bus-table tr:hover {
+  background-color: #3333FF;
+  
+  
+  
+}
 
+.bus-table tr:hover td:first-child {
+  background-color: #FF6666;
+  
+}
 
 
 /*green panel that's visible */
