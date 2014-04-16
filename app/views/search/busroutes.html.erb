@@ -3,45 +3,43 @@
 <h1>Bus Routes</h1>
 
 
-<h3>BUS SCHEDULES</H3> 
+<h3>BUS SCHEDULES</H3>
 
-<div class="busoptionbox">
-<a href="fenur.html">Fenur S.A.</a> <span class="orange-numbered-box">1</span> 
-</div>
+<%
+@companies = [
+'Fenur S.A.',
+'Viña Bus S.A.',
+'Sol y Mar S.A',
+'Viña Bus S.A',
+'Buses del Gran Valparaiso S.A'
+] %>
 
-<div class="busoptionbox">
-Vina Bus S.A. <span class="green-numbered-box">2</span> 
-</div>
+<% @companies.each_with_index do |company, index| %>
 
-<div class="busoptionbox">
-Sol Y MVar S.A. <span class="blue-numbered-box">3</span> 
-</div>
+  <%= link_to buscompany_path, class: "bus-button" do %>
+    <%= index+1 %>00 - <%=company %>
+  <% end %>
 
-<div class="busoptionbox">
-Vina Bus S.A. <span class="blue-numbered-box">4</span> 
-</div>
+<% end %>
 
-<div class="busoptionbox">
-VBuses Del Gran Valparaiso S.A. <span class="orange-numbered-box">5</span> 
-</div>
+<hr/>
 
-<div class="busoptionbox">
-VVBuses Del Gran Valparaiso S.A. <span class="orange-numbered-box">6</span> 
-</div>
+<table class = "bus-button">
+<% @companies.each_with_index do |company, index| %>
 
-<div class="busoptionbox">  
-Top Tur S.A.<span class="red-numbered-box">7</span>
-</div>
+    <tr>
+      <td><%= link_to "#{index+1}00", buscompany_path %></td>
+      <td><%= link_to company, buscompany_path %></td>
+    </tr>
+  
 
-<div class="busoptionbox"> 
-Trolebuses Chile S.A.<span class="green-numbered-box">8</span> 
-</div>
+<% end %>
+</table>
 
-<div class="busoptionbox">  
-Buses Del Gran Valparaiso S.A.<span class="orange-numbered-box">9</span>
-</div>
 
-<div class="busoptionbox"> 
-Codetram S.A.<span class="light-blue-numbered-box">10</span> 
-</div>
+
+
+
+
+
 

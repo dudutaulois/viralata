@@ -17,9 +17,13 @@ body
 	padding-left:20px;
 	padding-top: 50px;
 	padding-bottom: 50px;
-	clear-none;
+	
+	
 	
 }
+	
+}
+
 
 /*green button on Options page */
 
@@ -53,33 +57,75 @@ h3 {
 	text-align: center;
 }
 
-/* boxes for the bus schedules. */
-
-.busoptionbox {
+/* buttons of the companies */	
+	
+.bus-button {
 	border: outset;
-	border-color: #ffffff;
-	margin-left: 400px; 
-	margin-right: 400px;
+	border-color: black;
+	margin-left: auto; 
+	margin-right: auto;
 	text-align: center;
 	padding-left:5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	font-weight: lighter;
+	width : 200px; 
 	clear:none;
+	display:block;
 }
+
+.bus-button a {
+   display: block;
+}
+
+.bus-button tr:hover {
+  background-color: yellow;
+}
+
+.bus-button tr:hover td:first-child{
+  background-color: red;
+}
+
+.NumberCompany{
+width:50px;
+background-color: yellow;
+
+}
+
+.NameCompany{
+float: right;
+position: relative;
+top: 0;
+width:150px;
+background-color: blue;
+
+}
+
+
+
+
+
 
 /*green panel that's visible */
 .visiblepanel {
-position: fixed;
-margin-left: 300px;
-	margin-top:0;
-	
-	z-index:11;
-	
+position: center;
+z-index:11;
+
 
 }
 
+.fenurBus{
+position: center;
+background-color:white;
 
+
+}
+#fenurTab{
+
+width:200px;
+margin-left: auto;
+margin-right: auto;
+}
 
 /*numbered boxes on the schedules*/
 .orange-numbered-box {
@@ -112,28 +158,29 @@ background-color: #68b7dc;
 	font-weight: bold;
 }
 
-/*Fenur SA Page*/
-.yellowbox {
-	background-color: #ffff00;
-	border: outset;
+
+.busesBox {
+	background-color: #66A3FF;
 	border-color: #ffffff;
-	margin-left: 400px; 
-	margin-right: 400px;
-	text-align: center;
-	padding-left:5px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	margin-left: auto; 
+	margin-right: auto;
+	text-align: left ;
 	font-weight: lighter;
+	width : 200px;
 	clear:none;
 }
 
 .boldbusnumber {
 	font-weight:bold;
+	
 
 }
 
 .yellowboxlist {
 	list-style-type: none;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left: 0;
 }
 
 /*606 bus sample page*/
