@@ -8,7 +8,19 @@ class SearchController < ApplicationController
   end
 
   def path
-
+	origin_point = Point.new(:lat => Float(params[:org_lat]), :lng => Float(params[:org_lng]))
+	logger.info("Origin: #{origin_point.inspect}")
+	
+	start_point = Point.closest(:origin => origin_point).first
+	logger.info("Start: #{start_point.inspect}")
+	
+	if start_point.paths.length != 1
+	  raise "We don't handle multiple possible buses at one point"
+	end
+	
+	start_path = start_point.paths.first
+	
+	@route = start_path.route
   end
   
 
