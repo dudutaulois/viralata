@@ -2,8 +2,7 @@ body
 {
 	background-color: #e4dfe3;
 	font-family: Helvetica, Verdana, sans-serif;
-	position: relative;
-	
+	position: relative;	
 }
 
 /*boxes for the menu. */
@@ -17,10 +16,6 @@ body
 	padding-left:20px;
 	padding-top: 50px;
 	padding-bottom: 50px;
-	
-	
-	
-}
 	
 }
 
@@ -48,9 +43,7 @@ margin-left: 450px;
 	display:none;
 	z-index:11;
 	filter: alpha(opacity=85);
-137
 opacity: .85;
-
 }
 
 h3 {
@@ -82,11 +75,11 @@ h3 {
   background-color: yellow;
 }
 
-.bus-button tr:hover td:first-child{
+.bus-button tr:hover td:first-child {
   background-color: red;
 }
 
-.NumberCompany{
+.NumberCompany {
 width:50px;
 background-color: yellow;
 

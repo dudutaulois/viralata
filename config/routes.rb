@@ -1,11 +1,9 @@
 Viralata::Application.routes.draw do
   root :to => 'search#index'
-  
   get 'destination', to: 'search#destination'
-  get 'search/search_response', to: 'search#search_response'
+  get 'path', to: 'search#path'
   
   # Temporary
-  get 'CSV', to: 'search#testcsv'
   get 'busroutes', to: 'search#busroutes'
   get 'buscompany', to: 'search#buscompany'
 
