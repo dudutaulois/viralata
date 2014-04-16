@@ -21,7 +21,7 @@ files.each do |file_name|
 		first_path = nil
 		last_path = nil
 		
-		CSV.foreach(file_name, headers:true) do |row|
+		CSV.foreach(file_name, headers: true, col_sep: "\t") do |row|
 			lat = Float(row['Latitude'])
 			lng = Float(row['Longitude'])
 			
