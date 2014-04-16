@@ -9,6 +9,7 @@ Viralata::Application.routes.draw do
   get 'busroutes', to: 'search#busroutes'
   get 'buscompany', to: 'search#buscompany'
 
-  resources :companies
-  resources :routes
+  resources :companies do
+    resources :routes, shallow: true
+  end
 end
