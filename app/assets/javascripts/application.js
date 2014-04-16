@@ -16,7 +16,5 @@
 //= require bootstrap
 //= require_tree .
 //= require underscore
-//= require jquery.ui.all
-//= require gmaps-autocomplete
 //= require gmaps/google
 

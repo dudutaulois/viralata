@@ -21,8 +21,6 @@ gem 'geokit-rails'
 
 # Javascript
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'gmaps-autocomplete-rails'
 
 group :development do
   gem 'better_errors'

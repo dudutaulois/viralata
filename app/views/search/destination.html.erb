@@ -1,50 +1,64 @@
 <% content_for :title do %>Where do you want to go?<% end %>
 
+<div class="wrapper" onload="initialize()">
+
 
 <h1>Where do you want to go?</h1>
 
-<div class="wrapper">
+<br/>
 
-<!-- Tag para iniciar um form -->
-<%= form_tag(path_path, method: "get", class: "search_fields") do %>
 
-<!-- Form contents goes here --><br/>
-
-  
-<!-- Destiny Field -->
-  <%= label_tag(:destination, "Destination:") %>
-  <%= text_field_tag(:destination, 'Type here the destination adress', id: 'destination_field') %> 
-  
-  
-  <%= text_field_tag(:error, nil, id: 'gmaps-error') %> 
-
-<!-- Botão Enviar -->
-  <%= submit_tag("Show me!") %>
-<% end %>
+    <div id="locationField">
+      <input id="autocomplete" placeholder="Enter your address" type="text"></input>
+    </div>
 
 <br/>
 
-<!-- Teste -->
-
-<%= text_field_tag(@post) do |f| %>
-<%= f.input :address, :input_html =>{:id => 'gmaps-input-address'}, :placeholder => 'Start typing a place...' %>
+<%= link_to '', id: 'go', onclick: "getLocation();" do %>
+<h1>GO!</h1>
 <% end %>
 
-<!-- Getting auto complete from Google -->
-
 <script type="text/javascript">
-jQuery(function() {
-  var completer;
 
-  completer = GmapsAutoComplete.init({
-    inputField: '#gmaps-input-address',
-    errorField: '#gmaps-error'
-  });
+var placeSearch, autocomplete;
 
-  completer.autoCompleteInit({
-    country: "us"
-  });
-});
+
+function initialize() {
+  // Create the autocomplete object, restricting the search
+  // to geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'),
+      { types: ['geocode'],
+        componentRestrictions: {country: 'cl'}
+      });
+      
+      }
+
+
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+  }
+  
+  }
+
+
+
+$(document).ready(initialize)
+
+
+
+/* Getting Information of the current position and pass to the URL */
+function getLocation(){
+  var loc = autocomplete.getPlace().geometry.location;
+  location.href = '<%= path_path %>?org_lat=<%= params[:lat] %>&org_lng=<%= params[:lng] %>&dst_lat=' + loc.k + '&dst_lon=' + loc.A;
+}
+ 
+
 </script>
 
 
