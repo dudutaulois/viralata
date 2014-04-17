@@ -51,7 +51,7 @@ while true
     print "Enter GMAP URL: "
     url = gets
     
-    break if /\/dir\/(.+?)\/@/ === url
+    break if /\/dir\/(.+?\/)@/ === url
     puts "UNKNOWN URL"
   end
   
