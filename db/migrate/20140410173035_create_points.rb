@@ -9,7 +9,7 @@ class CreatePoints < ActiveRecord::Migration
     create_table :paths do |t|
       t.integer :point_id
       t.integer :route_id
-      #t.integer :next_id
+      t.integer :next_id
       t.integer :sequence
    	  
       t.string :street
