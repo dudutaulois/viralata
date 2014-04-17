@@ -1,3 +1,36 @@
+Waypoint = Struct.new(:src, :dst, :point)
+Travel = Struct.new(:origin, :destination, :waypoints)
+class Travel
+  def initialize(origin, destination)
+    @origin, @destination = origin, destination
+    @waypoints = []
+  end
+  attr_reader :origin, :destination
+
+  def calculate
+    origin.paths.each do |origin_path|
+      distance = 0
+      lst = origin_path
+      cur = origin_path.nxt
+      while cur != origin_path and cur.nxt
+        distance += lst.distance_to(cur)
+        other_paths = Path.joins(:points).where('points.id' = cur.point_id)
+        other_paths.each do |fork_path|
+          if fork_path == destination.path
+            # At the destination
+            
+          end
+        end
+
+        lst = cur
+        cur = cur.nxt
+      end
+    end
+  end
+
+end
+
+
 class SearchController < ApplicationController
   def index
     @no_header = true
@@ -8,19 +41,24 @@ class SearchController < ApplicationController
   end
 
   def path
-	origin_point = Point.new(:lat => Float(params[:org_lat]), :lng => Float(params[:org_lng]))
-	logger.info("Origin: #{origin_point.inspect}")
-	
-	start_point = Point.closest(:origin => origin_point).first
-	logger.info("Start: #{start_point.inspect}")
-	
-	if start_point.paths.length != 1
-	  raise "We don't handle multiple possible buses at one point"
-	end
-	
-	start_path = start_point.paths.first
-	
-	@route = start_path.route
+    orig_point = Point.new(:lat => Float(params[:org_lat]), :lng => Float(params[:org_lng]))
+    start_point = Point.closest(:origin => orig_point).first
+
+    dest_point = Point.new(:lat => Float(params[:dst_lat]), :lng => Float(params[:dst_lng]))
+    end_point = Point.closest(:origin => dest_point).first
+
+    travel = Travel.new(start_point, end_point)
+
+    start_point.
+    
+    
+    if start_point.paths.length != 1
+      raise "We don't handle multiple possible buses at one point"
+    end
+    
+    start_path = start_point.paths.first
+    
+    @route = start_path.route
   end
   
 
