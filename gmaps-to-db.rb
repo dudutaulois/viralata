@@ -47,21 +47,23 @@ while true
     name_list << [street, locale]
   end
   
-  point_list = nil
   while true
     print "Enter GMAP URL: "
     url = gets
     
-    break if /\/dir\/(.+?\/)@/ === url
-    puts "UNKNOWN URL"
+    unless /\/dir\/(.+?\/)@/ === url
+      puts "UNKNOWN URL"
+      next
+    end
     
     point_list = $1.scan(/(?:(-\d{2}\.\d{3,8}),(-\d{2}\.\d{3,8})\/)/)
     
     if point_list.length != name_list.length
       puts "!!! LIST LENGTH MISMATCH !!!"
-    else
-      break
+      next
     end
+
+    break
   end
   
   data = point_list.zip(name_list).collect do |(lat, lng), (street, locale)|

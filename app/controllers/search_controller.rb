@@ -4,30 +4,46 @@ class Travel
   def initialize(origin, destination)
     @origin, @destination = origin, destination
     @waypoints = []
+    @distance = 0.0
   end
   attr_reader :origin, :destination
+  attr_writer :distance
 
-  def calculate
-    origin.paths.each do |origin_path|
-      distance = 0
-      lst = origin_path
-      cur = origin_path.nxt
-      while cur != origin_path and cur.nxt
-        distance += lst.distance_to(cur)
-        other_paths = Path.joins(:points).where('points.id' = cur.point_id)
-        other_paths.each do |fork_path|
-          if fork_path == destination.path
-            # At the destination
-            
-          end
+  def path_traverse(from_paths = origin.paths)
+    from_paths.map do |origin_path|
+      # Don't go back on the same route
+      next if waypoints.find { |w| w.route_id == origin_path.route_id }
+      
+      travel = self.dup
+      travel.waypoints << origin_path
+
+      # The :paths part of include ideally should only include paths that are not from the first Path
+      path_scope = Path.includes(:point => :paths).where(:route_id => origin_path.route_id).order(:sequence)
+      path_list_before = path_scope.where("sequence < ?", origin_path.sequence)
+      path_list_after = path_scope.where("sequence > ?", origin_path.sequence)
+      path_forward = path_list_after + path_list_before
+
+      path_pairs = path_forward[0..-2].zip(path_forward[1..-1])
+
+      if destination.paths.find { |p| p.route_id == origin_path.route_id }
+        # We are on a route that goes to the destination.
+        path_pairs.each do |lst_path, cur_path|
+          travel.distance += lst_path.distance_to(cur_path)
+          break if cur_path == destination.path
         end
-
-        lst = cur
-        cur = cur.nxt
+        next travel
       end
-    end
-  end
+      
+      next # Transfers not implemented yet
+      path_pairs.map do |lst_path, cur_path|
+        travel.distance += lst_path.distance_to(cur_path)
 
+        # Possible transfer
+        # Doesn't handle multiple equivaletent transfer points
+        path_traverse(cur_path.point.paths - [cur_path])
+      end
+    end.flatten
+  end
 end
 
 
@@ -49,7 +65,7 @@ class SearchController < ApplicationController
 
     travel = Travel.new(start_point, end_point)
 
-    start_point.
+    options = travel.path_traverse.sort_by { |t| t.distance }
     
     
     if start_point.paths.length != 1
