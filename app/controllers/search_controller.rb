@@ -85,6 +85,8 @@ class SearchController < ApplicationController
   end
 
   def path
+    @no_header = true
+
     orig_point, start_points = point_from(params[:org_lat] || -33.02919,
                                           params[:org_lng] || -71.513044)
     end_point, dest_points = point_from(params[:dst_lat], params[:dst_lng])
