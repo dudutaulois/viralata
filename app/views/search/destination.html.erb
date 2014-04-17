@@ -91,7 +91,8 @@ $(document).ready(initialize)
 /* Getting Information of the current position and pass to the URL */
 function getLocation(){
   var loc = autocomplete.getPlace().geometry.location;
-  location.href = '<%= path_path %>?org_lat=<%= params[:lat] %>&org_lng=<%= params[:lng] %>&dst_lat=' + loc.k + '&dst_lng=' + loc.A;
+  var name = encodeURIComponent(document.getElementById('autocomplete').value);
+  location.href = '<%= path_path %>?org_lat=<%= params[:lat] %>&org_lng=<%= params[:lng] %>&dst_lat=' + loc.k + '&dst_lng=' + loc.A + '&name=' + name;
 }
  
 

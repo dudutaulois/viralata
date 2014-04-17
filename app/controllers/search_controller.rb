@@ -85,7 +85,8 @@ class SearchController < ApplicationController
   end
 
   def path
-    orig_point, start_points = point_from(params[:org_lat], params[:org_lng])
+    orig_point, start_points = point_from(params[:org_lat] || -33.02919,
+                                          params[:org_lng] || -71.513044)
     end_point, dest_points = point_from(params[:dst_lat], params[:dst_lng])
 
     travels =
@@ -98,6 +99,7 @@ class SearchController < ApplicationController
     
     start_path = start_points.first.paths.first
     
+    @dest_name = params[:name]
     @route = start_path.route
   end
   
