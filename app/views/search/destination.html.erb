@@ -1,8 +1,32 @@
 <% content_for :title do %>Where do you want to go?<% end %>
 
-<div class="wrapper" onload="initialize()">
+<div id="wrapper">
 
+<div class="content">
 
+<div class="custom_nav">
+<div class="menu_ico">
+
+<%= link_to root_path, class: 'btn_menu' do %>
+<%= image_tag 'ico_menu.svg' %>
+<% end %>
+</div>
+
+<div class="home_ico">
+<%= link_to root_path, class: 'btn_home' do %>
+<%= image_tag 'ico_home.svg' %>
+<% end %>
+</div>
+
+<div class="search_ico">
+<%= link_to busroutes_path, class: 'btn_search' do %>
+<%= image_tag 'ico_search.svg' %>
+<% end %>
+</div>
+
+</div> <!-- end DIV custom_nav -->
+
+<div id="search_area">
 <h1>Where do you want to go?</h1>
 
 <br/>
@@ -15,8 +39,20 @@
 <br/>
 
 <%= link_to '', id: 'go', onclick: "getLocation();" do %>
-<h1>GO!</h1>
+<h2>GO!</h2>
 <% end %>
+
+
+</div> <!-- end DIV search_area -->
+
+<div id="advertising">
+advertising
+</div>
+
+
+</div> <!-- end DIV content -->
+
+</div> <!-- end DIV wrapper -->
 
 <script type="text/javascript">
 
@@ -55,12 +91,10 @@ $(document).ready(initialize)
 /* Getting Information of the current position and pass to the URL */
 function getLocation(){
   var loc = autocomplete.getPlace().geometry.location;
-  location.href = '<%= path_path %>?org_lat=<%= params[:lat] %>&org_lng=<%= params[:lng] %>&dst_lat=' + loc.k + '&dst_lng=' + loc.A;
+  var name = encodeURIComponent(document.getElementById('autocomplete').value);
+  location.href = '<%= path_path %>?org_lat=<%= params[:lat] %>&org_lng=<%= params[:lng] %>&dst_lat=' + loc.k + '&dst_lng=' + loc.A + '&name=' + name;
 }
  
 
 </script>
 
-
-</div>
-</div>

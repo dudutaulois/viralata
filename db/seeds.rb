@@ -19,8 +19,8 @@ files.each do |file_name|
   Point.transaction do
     route = Route.create(:name => route_name)
 		
-#    first_path = nil
-#    last_path = nil
+    first_path = nil
+    last_path = nil
 
     sequence = 0
     CSV.foreach(file_name, headers: true, col_sep: "\t") do |row|
@@ -35,20 +35,20 @@ files.each do |file_name|
                          :street => row['Street'],
                          :city => row['City'],
                          :sequence => sequence)
-#      if last_path
-#        last_path.nxt = path
-#        last_path.save!
-#      end
+      if last_path
+        last_path.nxt = path
+        last_path.save!
+      end
       
-#      last_path = path						   
-#      first_path = path unless first_path
+      last_path = path						   
+      first_path = path unless first_path
       sequence += 1
       print "*"
     end
     puts
     
     # Complete path loop
-#    last_path.nxt = first_path
-#    last_path.save!		
+    last_path.nxt = first_path
+    last_path.save!		
   end
 end

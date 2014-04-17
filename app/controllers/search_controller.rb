@@ -1,13 +1,17 @@
-Waypoint = Struct.new(:src, :dst, :point)
-Travel = Struct.new(:origin, :destination, :waypoints)
 class Travel
+  # origin - Database origin point
+  # destination - Database destination point
+  # waypoints - List of database path.  First is associated with origin, last with destination
   def initialize(origin, destination)
     @origin, @destination = origin, destination
     @waypoints = []
     @distance = 0.0
   end
-  attr_reader :origin, :destination
-  attr_writer :distance
+  attr_reader :origin, :destination, :waypoints
+  attr_reader :distance
+  def add_distance(d)
+    @distance += d
+  end
 
   def path_traverse(from_paths = origin.paths)
     from_paths.map do |origin_path|
@@ -28,8 +32,11 @@ class Travel
       if destination.paths.find { |p| p.route_id == origin_path.route_id }
         # We are on a route that goes to the destination.
         path_pairs.each do |lst_path, cur_path|
-          travel.distance += lst_path.distance_to(cur_path)
-          break if cur_path == destination.path
+          travel.add_distance(lst_path.point.distance_to(cur_path.point))
+          if destination.paths.include?(cur_path)
+            travel.waypoints << cur_path
+            break
+          end
         end
         next travel
       end
@@ -40,7 +47,7 @@ class Travel
 
         # Possible transfer
         # Doesn't handle multiple equivaletent transfer points
-        path_traverse(cur_path.point.paths - [cur_path])
+        travel.path_traverse(cur_path.point.paths - [cur_path])
       end
     end.flatten
   end
@@ -53,27 +60,48 @@ class SearchController < ApplicationController
   end
   
   def destination
+    @no_header = true
+  end
 
+  def point_from(lat, lng)
+    orig_point = Point.new(:lat => Float(lat), :lng => Float(lng))
+    points = Point.by_distance(:origin => orig_point).limit(5).all
+
+    result = [points.first]
+
+    points.to_a[1..-1].each do |point|
+      next if point.distance_to(orig_point) > 0.2
+
+      next if result.find do |p| 
+        pts = p.paths.map(:point)
+        pts.map(:nxt).include?(point) || pts.include?(point.nxt)
+        
+        p.paths.map(:nxt)
+      end
+
+      result << point
+    end
+    [orig_point, result]
   end
 
   def path
-    orig_point = Point.new(:lat => Float(params[:org_lat]), :lng => Float(params[:org_lng]))
-    start_point = Point.closest(:origin => orig_point).first
+    @no_header = true
 
-    dest_point = Point.new(:lat => Float(params[:dst_lat]), :lng => Float(params[:dst_lng]))
-    end_point = Point.closest(:origin => dest_point).first
+    orig_point, start_points = point_from(params[:org_lat] || -33.02919,
+                                          params[:org_lng] || -71.513044)
+    end_point, dest_points = point_from(params[:dst_lat], params[:dst_lng])
 
-    travel = Travel.new(start_point, end_point)
+    travels =
+      start_points.map do |sp|
+      dest_points.map do |ep|
+        Travel.new(sp, ep).path_traverse
+      end
+    end.flatten.sort_by { |t| t.distance }
 
-    options = travel.path_traverse.sort_by { |t| t.distance }
     
+    start_path = start_points.first.paths.first
     
-    if start_point.paths.length != 1
-      raise "We don't handle multiple possible buses at one point"
-    end
-    
-    start_path = start_point.paths.first
-    
+    @dest_name = params[:name]
     @route = start_path.route
   end
   

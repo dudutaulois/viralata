@@ -14,63 +14,258 @@
  *= require_self
  */
 
+body {
+margin: 0;
+padding: 0;
+font-family: 'Lato', sans-serif;
+margin-top: -20px;
+}
+
+
+
+.container, main {
+margin: 0;
+padding: 0;
+}
+
+
+
 
 #wrapper {
-    top: 640px;
-    margin: 0 auto;
+width: 100%;
+height: 568px;
+max-height: 568px;
+background: #636466;
 }
 
+.content {
+max-width: 320px;/* **especial para iPhone, mudar de lugar */
+margin: 0 auto;
+background: #E2DEDE;
+position: relative;
+}
+
+
+
+/* //CUSTOM NAVIGATION */
+.custom_nav {
+    height: 50px;
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    z-index: 999;
+    padding-top: 5px;
+}
+
+.menu_ico img {
+	float: left;
+	width: 45px;
+	height: auto;
+	padding-left: 10px;
+}
+
+.search_ico {
+	float: right;
+	width: 45px;
+	height: auto;
+	padding-right: 10px;
+}
+
+.home_ico img {
+	float: right;
+	width: 45px;
+	height: auto;
+	padding-right: 10px;
+}
+
+
+/* //HOME CSS */
+
+#btn_go_home {
+background: #E2DEDE;
+width: 100%;
+height: 259px;
+z-index: 1;
+position: absolute;
+}
+
+	#btn_go_home h1 {
+	width: 100%;
+	height: 259px;
+	background: #E2DEDE;
+	text-align: center;
+	padding-top: 30px;
+	font-weight: 100;
+	color: #000000;
+	font-size: 32px;
+	}
+
+
+#btn_where_to {
+background: #E2DEDE;
+width: 100%;
+height: 259px;
+z-index: 1;
+position: absolute;
+top:259px;
+border-top: 2px solid white;
+}
+
+	#btn_where_to_go h1 {
+	width: 100%;
+	height: 259px;
+	background: #E2DEDE;
+	text-align: center;
+	padding-top: 120px;
+	font-weight: 300;
+	color: #ED1A3B;
+	font-size: 32px;
+	}
+	
+
+/* //SEARCH CSS */
+#search_area {
+position: absolute;
+background: #E2DEDE;
+height: 568px;
+padding: 20px;
+position: absolute;	
+text-transform: uppercase;
+}
+
+#search_area h1 {
+padding-top: 40px;
+font-weight: 100;
+color: #ED1A3B;
+}
+
+	#locationField, input {
+		width: 100%;
+		height: 35px;
+		margin-top: 0px;
+	}
+	
+	#go h2 {
+	text-align: center;
+	text-transform: uppercase;
+	background: black;
+	width: 100%;
+	height: 50px;
+	padding-top: 8px;
+	margin-top: 170px;
+	}
+
+
+#advertising {
+width: 100%;
+height: 50px;
+background-color: #636466;
+text-align: center;
+text-transform: uppercase;
+font-family: sans-serif;
+font-size: medium;
+position: absolute;
+top: 518px;
+z-index: 5;
+font-weight: 100;
+color: #ffffff;
+letter-spacing: 3px;
+padding-top: 18px;
+font-size: x-small;
+}
+
+
+
+/* //Circulo do mapa */
 #middle {
-   /* border-radius: 315px;*/
-  /*  overflow: hidden; /*
-}
+-webkit-border-radius: 235px;
+-moz-border-radius: 235px;
+border-radius: 235px;
 
+-webkit-mask-image: url(circle.svg);
+
+overflow: hidden;
+z-index: 995;
+position: absolute;
+top: 130px;
+margin: 0 auto;
+width: 235px;
+height: 235px;
+border: 1px white solid;
+margin-left: 41px;
+}
 
 .box {
 	/*border-radius: 315px;*/
-    width: 315px;
-    margin: 0 auto;
-    background-color: #000000;
+    width: 235px;
+    height: 235px;
+    background-color: #ffffff;
     border: 1px white solid;
+	padding-left: 50px;
+}
+
+
+#info_overlay {
+background: black;
+opacity: 0.5;
+width: 100%;
+height: 100px;
+position: absolute;
+top: 155px;
+z-index: 999;
 
 }
 
- #locationField, #controls {
-        position: relative;
-        width: 480px;
-      }
-      #autocomplete {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 99%;
-      }
-      .label {
-        text-align: right;
-        font-weight: bold;
-        width: 100px;
-        color: #303030;
-      }
-      #address {
-        border: 1px solid #000090;
-        background-color: #f0f0ff;
-        width: 480px;
-        padding-right: 2px;
-      }
-      #address td {
-        font-size: 10pt;
-      }
-      .field {
-        width: 99%;
-      }
-      .slimField {
-        width: 80px;
-      }
-      .wideField {
-        width: 200px;
-      }
-      #locationField {
-        height: 20px;
-        margin-bottom: 2px;
-      }
+#info_overlay h1 {
+color: white;
+font-weight: 100;
+font-size: 15px;
+text-align: center;
+padding-top: 10px;
+text-transform: uppercase;
+
+}
+
+
+
+
+
+/*green button on Options page */
+
+#sidebutton {
+    float: left;
+    margin-left: -20px;
+    margin-top: 220px;
+    position: absolute;
+    z-index: 90;
+}
+
+#sidebutton img {
+	width: 55px;
+	height: 55px;
+}
+
+
+
+a.trigger {
+	postition: absolute;
+	display:block;
+	float:left;
+}
+
+/*green sliding panel. */
+.panel {
+	
+	display:none;
+	float: right;
+    margin-left: 0;
+    margin-top: 0px;
+    opacity: 0.85;
+    position: absolute;
+    width: 80px;
+    height: 568px;
+    z-index: 99;
+    background: #00AC4E;
+
+}
 
