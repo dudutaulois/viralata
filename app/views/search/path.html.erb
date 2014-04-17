@@ -2,47 +2,67 @@
 
 <div class="content">
 
-<div class="custom_nav">
-<div class="menu_ico">
 
-<%= link_to root_path, class: 'btn_menu' do %>
-<%= image_tag 'ico_menu.svg' %>
-<% end %>
+
+<div class="panel_fixed">
+<%= image_tag 'line-bus.svg' %>	
 </div>
 
-<div class="home_ico">
-<%= link_to root_path, class: 'btn_home' do %>
-<%= image_tag 'ico_home.svg' %>
-<% end %>
-</div>
+<div id="wrapper_tab">
 
-<div class="search_ico">
-<%= link_to busroutes_path, class: 'btn_search' do %>
-<%= image_tag 'ico_search.svg' %>
-<% end %>
-</div>
-
-</div> <!-- end DIV custom_nav -->
-
-<!-- //GEM STUFF TO SHOW THE TAB -->
-<div class="overlay"></div>
-<div id="sidebutton">
-<a class="trigger" href="#">
-<%= image_tag 'green-btn.svg' %></a>
-</div>
-
-<div class="panel">
-
-<%= image_tag 'line-bus.svg' %>
+	<div class="custom_nav">
+			<div class="menu_ico">
+			<%= link_to root_path, class: 'btn_menu' do %>
+			<%= image_tag 'ico_menu.svg' %>
+			<% end %>
+			</div>
+			
+			<div class="home_ico">
+			<%= link_to root_path, class: 'btn_home' do %>
+			<%= image_tag 'ico_home.svg' %>
+			<% end %>
+			</div>
+			
+			<div class="search_ico">
+			<%= link_to destination_path, class: 'btn_search' do %>
+			<%= image_tag 'ico_search.svg' %>
+			<% end %>
+			</div>
 	
-</div>
+	</div> <!-- end DIV custom_nav -->
 
 
-<h1>Path</h1>
+			<div id="result_wrapper">
+			
+					<div id="route_result">
+					
+					<h1>Get on the bus</h1>
+					<h7><%= @route.name %></h7> to:
+					
+					<div id="dest_adrees">
+					<%= @dest_name %>
+					</div>
+					
+					<div id="bus_image">
+					<%= image_tag 'busao-gem.jpg' %>
+					</div>
+					
+					<div id="fare_result">
+					<h7>Fare <h8>CLP</h8>390<h8>,00</h8></h7>
+					</div>
+					
+						
+					</div> <!-- end DIV route_result -->
+			
+			</div> <!-- end DIV result_wrapper -->
+			
+								
+					<div id="result_alert">
+					<%= image_tag 'ico_alert.svg' %>
+					2 Buses alert!
+					</div>
 
-<p>Get on the <%= @route.name %></p>
-
-<%= image_tag 'busao-gem.jpg' %>
+</div> <!-- end DIV wrapper_tab -->
 
 </div> <!-- end DIV content -->
 
