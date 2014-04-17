@@ -59,7 +59,7 @@ while true
     point_list = $1.scan(/(?:(-\d{2}\.\d{3,8}),(-\d{2}\.\d{3,8})\/)/)
     
     if point_list.length != name_list.length
-      puts "!!! LIST LENGTH MISMATCH !!!"
+      puts "!!! LIST LENGTH MISMATCH #{name_list.length} #{point_list.length} !!!"
       next
     end
 
