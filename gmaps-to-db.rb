@@ -40,9 +40,9 @@ while true
     street = gets.strip
     break if street.empty?
     
-    print "Locale (blank for last): "
+    print "City (blank for last): "
     locale = gets.strip
-    lacale = name_list.last[1] if locale.empty?
+    locale = name_list.last[1] if locale.empty?
     
     name_list << [street, locale]
   end
