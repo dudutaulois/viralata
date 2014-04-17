@@ -21,11 +21,7 @@ class Travel
       travel = self.dup
       travel.waypoints << origin_path
 
-      # The :paths part of include ideally should only include paths that are not from the first Path
-      path_scope = Path.includes(:point => :paths).where(:route_id => origin_path.route_id).order(:sequence)
-      path_list_before = path_scope.where("sequence < ?", origin_path.sequence)
-      path_list_after = path_scope.where("sequence > ?", origin_path.sequence)
-      path_forward = path_list_after + path_list_before
+      path_forward = origin_path.forward_list
 
       path_pairs = path_forward[0..-2].zip(path_forward[1..-1])
 
@@ -65,22 +61,18 @@ class SearchController < ApplicationController
 
   def point_from(lat, lng)
     orig_point = Point.new(:lat => Float(lat), :lng => Float(lng))
-    points = Point.by_distance(:origin => orig_point).limit(5).all
+    points = Point.by_distance(:origin => orig_point).includes(:paths).limit(5).all.to_a
 
-    result = [points.first]
+    result = [points.shift]
 
-    points.to_a[1..-1].each do |point|
-      next if point.distance_to(orig_point) > 0.2
-
-      next if result.find do |p| 
-        pts = p.paths.map(:point)
-        pts.map(:nxt).include?(point) || pts.include?(point.nxt)
-        
-        p.paths.map(:nxt)
-      end
-
-      result << point
+    # Bad way to do this, just use sequence numbers
+    while points.first
+      p = points.shift
+      near_points = p.paths.map(&:near_list).flatten.map(&:point)
+      points -= near_points
+      result << p if (near_points & result).empty?
     end
+
     [orig_point, result]
   end
 
@@ -89,17 +81,40 @@ class SearchController < ApplicationController
 
     orig_point, start_points = point_from(params[:org_lat] || -33.02919,
                                           params[:org_lng] || -71.513044)
-    end_point, dest_points = point_from(params[:dst_lat], params[:dst_lng])
+    logger.info "Start Points:"
+    start_points.each do |pt|
+      logger.info "  #{pt.id}: #{pt.cord_str}"
+    end
+
+    dest_point, end_points = point_from(params[:dst_lat], params[:dst_lng])
+    logger.info "End Points:"
+    end_points.each do |pt|
+      logger.info "  #{pt.id}: #{pt.cord_str}"
+    end
 
     travels =
       start_points.map do |sp|
-      dest_points.map do |ep|
+      end_points.map do |ep|
         Travel.new(sp, ep).path_traverse
       end
-    end.flatten.sort_by { |t| t.distance }
+    end.flatten.compact.sort_by { |t| t.distance }
 
+    best = [travels.shift]
+    best += travels.find_all do |travel|
+      travel.distance - best.first.distance < 0.5
+    end
+
+    best.each do |travel|
+      logger.info "Distance: #{travel.distance}"
+      logger.info "  Get on: #{travel.waypoints.first.point.cord_str}"
+      logger.info " Get off: #{travel.waypoints.last.point.cord_str}"
+      logger.info
+    end
     
-    start_path = start_points.first.paths.first
+    logger.info("Routes: #{best.inspect}")
+    best
+
+    start_path = best.first.waypoints.first
     
     @dest_name = params[:name]
     @route = start_path.route

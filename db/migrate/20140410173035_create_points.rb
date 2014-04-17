@@ -19,9 +19,14 @@ class CreatePoints < ActiveRecord::Migration
     create_table :routes do |t|
       t.integer :company_id
       t.string :name
+      t.text   :description
 
       t.string :origin
       t.string :destination
+
+      t.float :price_direct
+      t.float :price_local
+      t.float :price_plan
 
     end
 
@@ -30,7 +35,7 @@ class CreatePoints < ActiveRecord::Migration
       t.string :direction
       t.string :phone
       t.string :email
-      t.string  :route_name
+      t.string  :service
       t.timestamps
     end
   end
