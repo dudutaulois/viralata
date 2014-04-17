@@ -31,27 +31,29 @@
 
 <h3>BUS SCHEDULES</H3>
 
-<%
-@companies = [
-'Fenur S.A.',
-'Viña Bus S.A.',
-'Sol y Mar S.A',
-'Viña Bus S.A',
-'Buses del Gran Valparaiso S.A'
-] %>
-
-		<div class="accordion horizontal">  
+<div class="accordion horizontal">  		
+<% @companies.each do |company| %>
+  <section id:"about">
+  <%= link_to company.service, '#', target: "#" + company.service %>
+  <%= link_to company.name, buscompany_path, target: "#" + company.service %>
+  <%= company.direction %><br/>
+  <%= company.phone %><br/>
+  <%= company.email %><br/>
+  </section>
+  <% company.routes.each do |route| %>
+    <div>
+      <%= route.name %><br/>
+      <%= route.description %><br/>
+      <%= route.origin %><br/>
+      <%= route.destination %><br/>
+      <%= route.price_direct %><br/>
+      <%= route.price_local %><br/>
+      <%= route.price_plan %><br/>
+    </div>
+  <% end %>
+<% end %>
 		
-		<% @companies.each_with_index do |company, index| %>
-		
-		  <section id:"about">
-		     <%= link_to "#{index+1}00", buscompany_path, target: "#" + "#{index+1}00" %>
-		     <%= link_to company, buscompany_path, target: "#" + "#{index+1}00" %>
-		  </section>
-		  
-		<% end %>
-		
-		</div>
+</div>
 
 
 <!-- begin Route TAB -->

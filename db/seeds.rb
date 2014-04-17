@@ -40,7 +40,7 @@ files.each do |file_name|
     end
 
     route = Route.where(:name => attrs[:name]).first
-    route = Route.create(attrs) unless route
+    route = Route.create(attrs.merge(:company => company)) unless route
 
     puts "  Route: #{attrs.inspect}"
   end
