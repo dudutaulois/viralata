@@ -1,0 +1,193 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree ./application
+ *= require_self
+ */
+
+body{
+margin: 0;
+padding: 0;
+font-family: 'Lato', sans-serif;
+margin-top: -20px;
+}
+
+
+
+.container, main {
+margin: 0;
+padding: 0;
+}
+
+
+
+
+#wrapper {
+width: 100%;
+max-height: 568px;
+background: #636466;
+}
+
+.content {
+max-width: 320px;/* **especial para iPhone, mudar de lugar */
+margin: 0 auto;
+background: #E2DEDE;
+position: relative;
+}
+
+/* //HOME CSS */
+
+#btn_go_home {
+background: #E2DEDE;
+width: 100%;
+height: 259px;
+z-index: 1;
+position: absolute;
+}
+
+	#btn_go_home h1 {
+	width: 100%;
+	height: 259px;
+	background: #E2DEDE;
+	text-align: center;
+	padding-top: 30px;
+	font-weight: 100;
+	color: #000000;
+	font-size: 32px;
+	}
+
+
+#btn_where_to {
+background: #E2DEDE;
+width: 100%;
+height: 259px;
+z-index: 1;
+position: absolute;
+top:259px;
+border-top: 2px solid white;
+}
+
+	#btn_where_to_go h1 {
+	width: 100%;
+	height: 259px;
+	background: #E2DEDE;
+	text-align: center;
+	padding-top: 120px;
+	font-weight: 100;
+	color: #ED1A3B;
+	font-size: 32px;
+	}
+	
+
+/* //SEARCH CSS */
+#search_area {
+position: absolute;
+background: #E2DEDE;
+height: 568px;
+padding: 20px;
+position: absolute;	
+text-transform: uppercase;
+}
+
+#search_area h1 {
+padding-top: 10px;
+font-weight: 100;
+color: #ED1A3B;
+}
+
+	#locationField, input {
+		width: 100%;
+		height: 35px;
+		margin-top: 15px;
+	}
+	
+	#go h2 {
+	text-align: center;
+	text-transform: uppercase;
+	background: black;
+	width: 100%;
+	height: 50px;
+	padding-top: 8px;
+	margin-top: 210px;
+	}
+
+
+#advertising {
+width: 100%;
+height: 50px;
+background-color: #636466;
+text-align: center;
+text-transform: uppercase;
+font-family: sans-serif;
+font-size: medium;
+position: absolute;
+top: 518px;
+z-index: 5;
+font-weight: 100;
+color: #ffffff;
+letter-spacing: 3px;
+padding-top: 18px;
+font-size: x-small;
+}
+
+
+
+/* //Circulo do mapa */
+#middle {
+-webkit-border-radius: 235px;
+-moz-border-radius: 235px;
+border-radius: 235px;
+
+-webkit-mask-image: url(circle.svg);
+
+overflow: hidden;
+z-index: 995;
+position: absolute;
+top: 130px;
+margin: 0 auto;
+width: 235px;
+height: 235px;
+border: 1px white solid;
+margin-left: 41px;
+}
+
+.box {
+	/*border-radius: 315px;*/
+    width: 235px;
+    height: 235px;
+    background-color: #ffffff;
+    border: 1px white solid;
+	padding-left: 50px;
+}
+
+
+#info_overlay {
+background: black;
+opacity: 0.5;
+width: 100%;
+height: 100px;
+position: absolute;
+top: 155px;
+z-index: 999;
+
+}
+
+#info_overlay h1 {
+color: white;
+font-weight: 100;
+font-size: 15px;
+text-align: center;
+padding-top: 10px;
+text-transform: uppercase;
+
+}
+

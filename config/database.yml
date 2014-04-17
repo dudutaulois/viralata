@@ -5,14 +5,18 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: postgresql
+  adapter: mysql2
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
   database: viralata_development
-# socket:     /Applications/MAMP/tmp/mysql/mysql.sock
+  username: viralata
+  password: viralata
+  host: MBA-Dudu
+  port: 8889
+
   
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

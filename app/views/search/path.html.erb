@@ -1,7 +1,72 @@
-<div id="ruta_printed">
+<div id="wrapper">
+
+<div class="content">
+
+<div class="custom_nav">
+<div class="menu_ico">
+
+<%= link_to root_path, class: 'btn_menu' do %>
+<%= image_tag 'ico_menu.svg' %>
+<% end %>
+</div>
+
+<div class="home_ico">
+<%= link_to root_path, class: 'btn_home' do %>
+<%= image_tag 'ico_home.svg' %>
+<% end %>
+</div>
+
+<div class="search_ico">
+<%= link_to busroutes_path, class: 'btn_search' do %>
+<%= image_tag 'ico_search.svg' %>
+<% end %>
+</div>
+
+</div> <!-- end DIV custom_nav -->
+
+<!-- //GEM STUFF TO SHOW THE TAB -->
+<div class="overlay"></div>
+<div id="sidebutton">
+<a class="trigger" href="#">
+<%= image_tag 'green-btn.svg' %></a>
+</div>
+
+<div class="panel">
+
+<%= image_tag 'line-bus.svg' %>
+	
+</div>
+
 
 <h1>Path</h1>
 
 <p>Get on the <%= @route.name %></p>
 
-</div>
+<%= image_tag 'busao-gem.jpg' %>
+
+</div> <!-- end DIV content -->
+
+</div> <!-- end DIV wrapper -->
+
+
+
+<!-- //GEM STUFF TO SHOW THE TAB -->
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(".trigger").click(function(){
+        $(".panel").toggle("slow");
+        $(this).toggleClass("active");
+        return false;
+    });
+    
+    $(".panel").click(function () {
+    	$(this).toggle("slow");
+    	$('.trigger').toggleClass("active");
+    	return false;
+    });
+});
+
+</script>
