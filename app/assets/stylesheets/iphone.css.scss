@@ -14,7 +14,7 @@
  *= require_self
  */
 
-body{
+body {
 margin: 0;
 padding: 0;
 font-family: 'Lato', sans-serif;
@@ -33,6 +33,7 @@ padding: 0;
 
 #wrapper {
 width: 100%;
+height: 568px;
 max-height: 568px;
 background: #636466;
 }
@@ -43,6 +44,54 @@ margin: 0 auto;
 background: #E2DEDE;
 position: relative;
 }
+
+#wrapper_tab {
+max-width: 280px;/* **especial para iPhone, mudar de lugar */
+margin: 0 auto;
+background: #E2DEDE;
+position: relative;
+float: right;
+}
+
+#result_wrapper {
+padding-left: 10px;
+padding-right: 10px;
+}
+
+
+
+/* //CUSTOM NAVIGATION */
+.custom_nav {
+    height: 50px;
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    z-index: 999;
+    padding-top: 5px;
+    border-bottom: 1px solid white;
+}
+
+.menu_ico img {
+	float: left;
+	width: 45px;
+	height: auto;
+	padding-left: 10px;
+}
+
+.search_ico {
+	float: right;
+	width: 45px;
+	height: auto;
+	padding-right: 10px;
+}
+
+.home_ico img {
+	float: right;
+	width: 45px;
+	height: auto;
+	padding-right: 10px;
+}
+
 
 /* //HOME CSS */
 
@@ -82,7 +131,7 @@ border-top: 2px solid white;
 	background: #E2DEDE;
 	text-align: center;
 	padding-top: 120px;
-	font-weight: 100;
+	font-weight: 300;
 	color: #ED1A3B;
 	font-size: 32px;
 	}
@@ -99,7 +148,7 @@ text-transform: uppercase;
 }
 
 #search_area h1 {
-padding-top: 10px;
+margin-top: 70px;
 font-weight: 100;
 color: #ED1A3B;
 }
@@ -107,7 +156,7 @@ color: #ED1A3B;
 	#locationField, input {
 		width: 100%;
 		height: 35px;
-		margin-top: 15px;
+		margin-top: 0px;
 	}
 	
 	#go h2 {
@@ -117,7 +166,7 @@ color: #ED1A3B;
 	width: 100%;
 	height: 50px;
 	padding-top: 8px;
-	margin-top: 210px;
+	margin-top: 170px;
 	}
 
 
@@ -139,7 +188,27 @@ padding-top: 18px;
 font-size: x-small;
 }
 
+/* //PATH CSS */
 
+#route_result {
+margin-top: 75px;
+font-size: 20px;
+
+}
+
+
+#route_result h7 {
+font-weight: 700;
+font-size: 36px;
+text-align: left;
+}
+
+
+#dest_adrees {
+padding-top: 20px;
+padding-bottom: 20px;
+font-weight: 100;
+}
 
 /* //Circulo do mapa */
 #middle {
@@ -190,4 +259,60 @@ padding-top: 10px;
 text-transform: uppercase;
 
 }
+
+
+
+
+
+/*green button on Options page */
+
+#sidebutton {
+    float: left;
+    margin-left: -20px;
+    margin-top: 220px;
+    position: absolute;
+    z-index: 90;
+}
+
+#sidebutton img {
+	width: 55px;
+	height: 55px;
+}
+
+
+
+a.trigger {
+	postition: absolute;
+	display:block;
+	float:left;
+}
+
+/*green sliding panel. */
+.panel {	
+	display:none;
+	float: right;
+    margin-left: 0;
+    margin-top: 0px;
+    opacity: 0.85;
+    position: absolute;
+    width: 40px;
+    height: 284px;
+    z-index: 99;
+    background: #00AC4E;
+}
+
+
+/*fized pannel to path */
+.panel_fixed {	
+	float: left;
+    margin-left: 0;
+    margin-top: 0px;
+    opacity: 0.85;
+    position: absolute;
+    width: 40px;
+    height: 284px;
+    z-index: 99;
+    background: #00AC4E;
+}
+
 

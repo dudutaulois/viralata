@@ -1,43 +1,111 @@
-<% content_for :title do %>bus routes<% end %>
+<% content_for :title do %>Bus Routes<% end %>
+
+<div id="wrapper">
+
+<div class="content">
+
+<div class="custom_nav">
+<div class="menu_ico">
+
+<%= link_to root_path, class: 'btn_menu' do %>
+<%= image_tag 'ico_menu.svg' %>
+<% end %>
+</div>
+
+<div class="home_ico">
+<%= link_to root_path, class: 'btn_home' do %>
+<%= image_tag 'ico_home.svg' %>
+<% end %>
+</div>
+
+<div class="bus_ico">
+<%= link_to busroutes_path, class: 'btn_bus' do %>
+<%= image_tag 'ico_bus.svg' %>
+<% end %>
+</div>
+
+</div> <!-- end DIV custom_nav -->
 
 <h1>Bus Routes</h1>
 
 
 <h3>BUS SCHEDULES</H3>
 
-<%
-@companies = [
-'Fenur S.A.',
-'Viña Bus S.A.',
-'Sol y Mar S.A',
-'Viña Bus S.A',
-'Buses del Gran Valparaiso S.A'
-] %>
-<!--
-<% @companies.each_with_index do |company, index| %>
-
-  <%= link_to buscompany_path, class: "bus-button" do %>
-    <%= index+1 %>00 - <%=company %>
+<div class="accordion horizontal">  		
+<% @companies.each do |company| %>
+  <section id:"about">
+  <%= link_to company.service, '#', target: "#" + company.service %>
+  <%= link_to company.name, buscompany_path, target: "#" + company.service %>
+  <%= company.direction %><br/>
+  <%= company.phone %><br/>
+  <%= company.email %><br/>
+  </section>
+  <% company.routes.each do |route| %>
+    <div>
+      <%= route.name %><br/>
+      <%= route.description %><br/>
+      <%= route.origin %><br/>
+      <%= route.destination %><br/>
+      <%= route.price_direct %><br/>
+      <%= route.price_local %><br/>
+      <%= route.price_plan %><br/>
+    </div>
   <% end %>
-
 <% end %>
-
-<hr/>
--->
-<div id="wrapper">
-<table  class = "bus-table">
-<% @companies.each_with_index do |company, index| %>
-
-    <tr>
-      <td><%= link_to "#{index+1}00", buscompany_path %></td>
-      <td><%= link_to company, buscompany_path %></td>
-    </tr>
-  
-
-<% end %>
-</table>
+		
 </div>
 
+
+<!-- begin Route TAB -->
+<div class="overlay"></div>
+<div id="sidebutton">
+<a class="trigger" href="#">
+<%= image_tag 'green-btn.svg' %></a>
+</div>
+
+<div class="panel">
+
+<%= image_tag 'line-bus.svg' %>
+	
+</div>
+
+<!-- end Route TAB -->
+
+
+
+
+
+
+<div id="advertising">
+advertising
+</div>
+
+
+</div> <!-- end DIV content -->
+
+</div> <!-- end DIV wrapper -->
+
+
+<!-- //GEM STUFF TO SHOW THE TAB -->
+
+s
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(".trigger").click(function(){
+        $(".panel").toggle("slow");
+        $(this).toggleClass("active");
+        return false;
+    });
+    
+    $(".panel").click(function () {
+    	$(this).toggle("slow");
+    	$('.trigger').toggleClass("active");
+    	return false;
+    });
+});
+
+</script>
 
 
 

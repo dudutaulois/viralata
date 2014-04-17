@@ -22,6 +22,11 @@ margin-top: -20px;
 }
 
 
+.navbar {
+display: none;
+}
+
+
 
 .container, main {
 margin: 0;
@@ -45,6 +50,19 @@ background: #E2DEDE;
 position: relative;
 }
 
+#wrapper_tab {
+max-width: 240px;/* **especial para iPhone, mudar de lugar */
+margin: 0 auto;
+background: #E2DEDE;
+position: relative;
+float: right;
+}
+
+#result_wrapper {
+padding-left: 10px;
+padding-right: 10px;
+}
+
 
 
 /* //CUSTOM NAVIGATION */
@@ -55,6 +73,7 @@ position: relative;
     width: 100%;
     z-index: 999;
     padding-top: 5px;
+    border-bottom: 1px solid white;
 }
 
 .menu_ico img {
@@ -70,6 +89,16 @@ position: relative;
 	height: auto;
 	padding-right: 10px;
 }
+
+.bus_ico {
+	float: right;
+	padding-top: 2px;
+    width: 51px;
+	height: auto;
+	padding-right: 10px;
+}
+
+
 
 .home_ico img {
 	float: right;
@@ -174,7 +203,58 @@ padding-top: 18px;
 font-size: x-small;
 }
 
+/* //PATH CSS */
 
+#route_result {
+margin-top: 75px;
+font-size: 20px;
+
+}
+
+
+#route_result h7 {
+font-weight: 700;
+font-size: 36px;
+text-align: left;
+}
+
+
+#dest_adrees {
+padding-top: 10px;
+padding-bottom: 10px;
+font-weight: 100;
+font-size: 15px;
+}
+
+#fare_result {
+margin-top: 15px;
+padding-bottom: 15px;
+}
+
+#fare_result h8 {
+padding: 0px;
+margin: 0px;
+font-size: 15px;
+}
+
+#result_alert {
+width: 100%;
+height: 65px;
+background: #ED1A3B;
+color: white;
+text-transform: uppercase;
+font-weight: 700;
+padding-top: 20px;
+font-size: 20px;
+}
+
+
+#result_alert img {
+width: 40px;
+height: 40px;
+float: left;
+margin: 0, 20, 0, 20;
+}
 
 /* //Circulo do mapa */
 #middle {
@@ -228,6 +308,98 @@ text-transform: uppercase;
 
 
 
+/* //CSS ACORDIOM BUS */
+/*Define Accordion box*/  
+.accordion {   
+     width:100%;  
+     overflow:hidden;   
+     margin:10px auto;   
+     color:#474747;   
+     background:#414141;   
+     padding:10px;   
+} 
+
+
+/* Header contents (buttons) */
+
+    .accordion section{   
+          float:left;  
+          overflow:hidden;   
+          color:#333;   
+          cursor:pointer;   
+          background: #333;   
+          margin:3px;   
+    }  
+    .accordion section:hover {  
+          background:#444;  
+    }  
+    
+    .accordion section p {   
+          display:none;   
+    }  
+    
+    .accordion section:after{  
+      position:relative;  
+      font-size:24px;  
+      color:#000;  
+      font-weight:bold;  
+} 
+
+.accordion section:target {   
+      background:#FFF;   
+      padding:10px;  
+}  
+.accordion section:target:hover {   
+      background:#FFF;   
+}  
+.accordion section:target h2 {  
+      width:100%;  
+}  
+.accordion section:target h2 a{   
+      color:#333;   
+      padding:0;  
+}  
+.accordion section:target p {  
+      display:block;  
+}  
+.accordion section h2 a{  
+      padding:8px 10px;  
+      display:block;   
+      font-size:16px;   
+      font-weight:normal;  
+      color:#eee;   
+      text-decoration:none;   
+} 
+
+/* //Vertical Accordion */
+    .vertical section{   
+         width:100%;   
+         height:40px;   
+         -webkit-transition:height 0.2s ease-out;  
+         -moz-transition:height 0.2s ease-out;  
+         -o-transition:height 0.2s ease-out;  
+         transition:height 0.2s ease-out;  
+    }  
+      
+    /*Set height of the slide*/  
+    .vertical :target{   
+         height:250px;   
+         width:97%;  
+    }  
+    
+    .vertical section h2 {   
+     position:relative;   
+     left:0;   
+     top:-15px;   
+}  
+/*Set position of the number on the slide*/  
+.vertical section:after{   
+      top:-60px;  
+      left:810px;  
+}  
+.vertical section:target:after{   
+      left:-9999px;  
+} 
 
 
 /*green button on Options page */
@@ -254,18 +426,37 @@ a.trigger {
 }
 
 /*green sliding panel. */
-.panel {
-	
+.panel {	
 	display:none;
 	float: right;
     margin-left: 0;
     margin-top: 0px;
     opacity: 0.85;
     position: absolute;
-    width: 80px;
-    height: 568px;
+    width: 40px;
+    height: 284px;
     z-index: 99;
     background: #00AC4E;
+}
 
+
+/*fized pannel to path */
+.panel_fixed {	
+	float: left;
+    margin-left: 0;
+    margin-top: 0px;
+    opacity: 0.85;
+    position: absolute;
+    width: 80px;
+    height: 567px;
+    z-index: 99;
+    background: #00AC4E;
+}
+
+
+.panel_fixed img {
+	max-height: 547px;
+	padding-left: 5px;
+	padding-top: 25px;
 }
 
