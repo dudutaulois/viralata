@@ -49,7 +49,10 @@ advertising
 
 <script type="text/javascript">
 var handler = Gmaps.build('Google');
-handler.buildMap({ internal: {id: 'geolocation'} }, function(){
+handler.buildMap({ 
+  provider: { zoom: 15, disableDefaultUI: true },
+  internal: {id: 'geolocation'}
+}, function(){
   if(navigator.geolocation)
     navigator.geolocation.getCurrentPosition(displayOnMap);
 });
