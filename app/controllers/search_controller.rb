@@ -78,15 +78,14 @@ class SearchController < ApplicationController
 
   def path
     @no_header = true
-
-    orig_point, start_points = point_from(params[:org_lat] || -33.02919,
-                                          params[:org_lng] || -71.513044)
+    @orig_point, start_points = point_from(params[:org_lat].blank? ? -32.9727114 : params[:org_lat],
+                                           params[:org_lng].blank? ? -71.5429878 : params[:org_lat])
     logger.info "Start Points:"
     start_points.each do |pt|
       logger.info "  #{pt.id}: #{pt.cord_str}"
     end
 
-    dest_point, end_points = point_from(params[:dst_lat], params[:dst_lng])
+    @dest_point, end_points = point_from(params[:dst_lat], params[:dst_lng])
     logger.info "End Points:"
     end_points.each do |pt|
       logger.info "  #{pt.id}: #{pt.cord_str}"
@@ -110,14 +109,15 @@ class SearchController < ApplicationController
       logger.info " Get off: #{travel.waypoints.last.point.cord_str}"
       logger.info
     end
+
     
     logger.info("Routes: #{best.inspect}")
-    best
 
-    start_path = best.first.waypoints.first
-    
     @dest_name = params[:name]
-    @route = start_path.route
+
+    @travel = best.first
+    @start = @travel.waypoints.first
+    @route = @start.route
   end
 
   def busroutes

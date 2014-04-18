@@ -3,6 +3,6 @@ class Point < ActiveRecord::Base
   has_many :paths
 
   def cord_str
-    "#{lat}, #{lng}"
+    "#{lat},#{lng}"
   end
 end

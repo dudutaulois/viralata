@@ -48,7 +48,7 @@
 					</div>
 					
 					<div id="fare_result">
-					<h7>Fare <h8>CLP</h8>390<h8>,00</h8></h7>
+					<h7>Fare <h8>CLP</h8><%= @route.price_local.to_i %><h8>,00</h8></h7>
 					</div>
 					
 						
@@ -71,6 +71,8 @@
 
 
 <!-- //GEM STUFF TO SHOW THE TAB -->
+
+<a href="https://maps.google.com/maps?saddr=<%= @orig_point.cord_str %>&daddr=<%= @start.point.cord_str %>&directionsmode=walking">Take me there</a>
 
 
 <script type="text/javascript">
